@@ -19,6 +19,7 @@ Then access it with `localhost:8080`.
 - Spring, Spring Boot, Spring JPA, Spring AI. 
 - Thymeleaf with native Javascript for AJAX.
 - H2 Embeded DB is used for easy storage.
+- Chatroom HTML template from [BootDey](https://www.bootdey.com/snippets/tagged/chat)
 
 # TODO 
 - [x] add AI as back end
