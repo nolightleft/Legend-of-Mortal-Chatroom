@@ -1,0 +1,63 @@
+<div th:fragment="f-chat-room">
+
+  <div id="chat-header" class="chat-header clearfix"
+    th:fragment="chat-header"
+    th:data-friend-id="${opponentUser.getId()}">
+    <div class="row">
+      <div class="col-lg-6">
+        <a href="javascript:void(0);" data-toggle="modal"
+          id="opponent-icon" onclick="javascript:oSwitchProfileVisibility('opponent-profile');"
+          data-target="#view_info"> <img
+          th:src="@{ ${opponentUser.getIconPath()} }" alt="avatar">
+        </a>
+        <div class="chat-about">
+          <h6 class="m-b-0" th:text="${opponentUser.getName()}"></h6>
+          <small>Last seen: 2 hours ago</small>
+        </div>
+      </div>
+      <div class="col-lg-6 hidden-sm text-right">
+        <a href="javascript:void(0);" class="btn" id="current-icon"
+          onclick="javascript:oSwitchProfileVisibility('current-profile');"> <img
+          th:src="@{ ${currentUser.getIconPath()} }" alt="avatar" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="chat-history" class="chat-history" th:fragment="chat-history"
+    onload="javascript:oScrollChatHistoryToBottom();">
+    <ul class="m-b-0" th:each="message : ${messages}">
+      <li class="clearfix">
+        <div class="message-data"
+          th:classappend="${(message.getSender().getId() == currentUser.getId()) ? 'text-right' : 'text-left'}">
+          <img
+            th:if="${message.getSender().getId() != currentUser.getId()}"
+            th:src="@{ ${opponentUser.getIconPath()} }" alt="avatar">
+          <span class="message-data-time"
+            th:text="${#dates.format(message.getCreationDate(), 'hh:mm a, EEEE')}" />
+        </div>
+        <div class="message"
+          th:classappend="${(message.getSender().getId() == currentUser.getId()) ? 'my-message float-right' : 'their-message'}"
+          th:text="${message.getContent()}" />
+      </li>
+    </ul>
+  </div>
+
+  <div id="profiles" th:fragment="profiles">
+    <div id="opponent-profile" class="profile hidden">
+      <div class="profile-texts">
+        <b th:text="${opponentUser.getName()}" />
+        <div th:text="${opponentUser.getDescription}" />
+      </div>
+      <img th:src="@{ ${opponentUser.getPicturePath()} }"
+          style="width: 12em;" alt="avatar">
+    </div>
+
+    <div id="current-profile" class="profile hidden">
+      <img th:src="@{ ${currentUser.getPicturePath()} }"
+        style="width: 12em;" alt="avatar">
+      <div class="profile-texts">
+        <b th:text="${currentUser.getName()}"></b>
+        <div th:text="${currentUser.getDescription()}" /></div>
+      </div>
+    </div>
+</div>
