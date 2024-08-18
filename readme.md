@@ -12,8 +12,17 @@ It's a Spring web application. You download the released jar and run it with
 `` java -jar chatroom-v0.1.jar ``  
 Then access it with `localhost:8080`.
 
-# How do I set up Ollama?
-// TODO write this
+# How do I set up Ollama and the AI models?
+You can check out [Ollama's document](https://github.com/ollama/ollama/tree/main/docs) first.
+
+1. Go to Ollama's website, download and install.
+2. Download an appropriate Chinese model
+    - I find the [Tifa-RP](https://huggingface.co/Tifa-RP/Tifa-7B-Qwen2-v0.1-GGUF) model pretty good
+    for this task and it's Q3_K model runs smoothly on my 4070
+3. Create a text file that contains path to model and basic prompts, there're some files I made in `model prompts` for reference, **remember to change model path to either absolute or relative path to your downloaded model**.
+4. Run `ollama create model-name -f path/to/text_file` to create an ollama AI model
+5. Add model name to chatroom.properties file for an character, this binds the AI model and the character together
+6. Run the web application (rerun if opened) and you should be able to talk with AI
 
 # What framework is used here?
 - Spring, Spring Boot, Spring JPA, Spring AI. 
