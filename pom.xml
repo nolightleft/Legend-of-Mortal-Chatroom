@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.nolightleft</groupId>
     <artifactId>chatroom</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.5-SNAPSHOT</version>
     <name>chatroom</name>
     <description>chatroom web application</description>
     <url />
